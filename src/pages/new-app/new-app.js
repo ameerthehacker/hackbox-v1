@@ -5,8 +5,8 @@ import { Flex } from '@chakra-ui/core';
 
 function NewApp() {
   return (
-    APPS.map(app => (
-      <Flex>
+    APPS.map((app, index) => (
+      <Flex key={index}>
         <AppCard app={app} />
       </Flex>
     ))

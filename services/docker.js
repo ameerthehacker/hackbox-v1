@@ -1,4 +1,4 @@
-import Docker from 'dockerode';
+const Docker = require('dockerode');
 
 class DockerClient {
   constructor() {
@@ -6,8 +6,7 @@ class DockerClient {
   }
 
   createApp(app) {
-    this.dockerClient.createContainer({
-      image: app.image,
+    this.dockerClient.run(app.image, ['--auth', 'none'], [], {
       hostConfig: {
         portBindings: { "8080/tcp": [{ "HostPort": "8080" }] }
       }
@@ -15,4 +14,4 @@ class DockerClient {
   }
 }
 
-export default new DockerClient();
+module.exports = new DockerClient();

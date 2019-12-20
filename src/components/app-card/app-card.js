@@ -1,5 +1,7 @@
 import React from 'react';
 import { Flex, Image, Text, Button } from '@chakra-ui/core';
+// This is to avoid webpack bundling native node modules
+const docker = window.require('./services/docker');
 
 function AppCard({ app }) {
   return (
@@ -11,7 +13,7 @@ function AppCard({ app }) {
         w="100%"
         variantColor="pink"
         onClick={() => {
-          
+          docker.createApp(app);
         }}
       >
         Add

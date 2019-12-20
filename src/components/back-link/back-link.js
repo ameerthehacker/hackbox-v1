@@ -13,6 +13,12 @@ function BackLink() {
           <Icon name="arrow-back" /> 
           Back
         </Link>
+        {
+          process.env.NODE_ENV === 'development'?
+          <Link ml={5} onClick={() => window.location.reload()}>
+            Reload
+          </Link>: null
+        }
       </Box>
     ): null
   );
