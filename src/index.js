@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDom from 'react-dom';
 import App from './pages/app';
 import { ThemeProvider, CSSReset } from '@chakra-ui/core';
+import './index.css';
 
 const Root = (
   <ThemeProvider>

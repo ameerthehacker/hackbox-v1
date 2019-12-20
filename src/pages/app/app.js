@@ -2,18 +2,22 @@ import React from 'react';
 import { HashRouter, Switch, Route } from 'react-router-dom';
 import Home from '../home';
 import NewApp from '../new-app';
-import { Flex } from '@chakra-ui/core';
+import { Box } from '@chakra-ui/core';
+import BackLink from '../../components/back-link';
 
 function App() {
   return (
-    <Flex p={10}>
-      <HashRouter>
-        <Switch>
-          <Route path="/" component={Home}  exact />
-          <Route path="/new" component={NewApp} exact />
-        </Switch>
-      </HashRouter>
-    </Flex>
+    <>
+      <Box p={10} pt={5}>
+        <HashRouter>
+          <BackLink />
+          <Switch>
+            <Route path="/" component={Home}  exact />
+            <Route path="/new" component={NewApp} exact />
+          </Switch>
+        </HashRouter>
+      </Box>
+    </>
   );
 }
 

@@ -1,4 +1,4 @@
-import vscode from './icons/vscode.svg'
+import vscode from './icons/vscode.png'
 
 const APPS = [
   {
