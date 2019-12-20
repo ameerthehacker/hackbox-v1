@@ -1,10 +1,9 @@
 import React from 'react';
+import CreateNewComponent from './components/create-new';
 
 function Home() {
   return (
-    <div>
-      <h1>Home page!</h1>
-    </div>
+    <CreateNewComponent />
   );
 }
 
