@@ -10,6 +10,9 @@ function AppCard({ app }) {
         mt={2} 
         w="100%"
         variantColor="pink"
+        onClick={() => {
+          
+        }}
       >
         Add
       </Button>
