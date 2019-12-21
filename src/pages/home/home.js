@@ -24,12 +24,10 @@ function Home() {
             setApps(hackboxApps);
             setIsLoading(false);
           })
-          .catch(err => {
+          .catch(() => {
             setIsLoading(false);
-          });
-    
-    setApps(apps);
-  }, [apps]);
+          });    
+  }, []);
 
   return (
     isLoading?
