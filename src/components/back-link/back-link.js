@@ -15,9 +15,22 @@ function BackLink() {
         </Link>
         {
           process.env.NODE_ENV === 'development'?
-          <Link ml={5} onClick={() => window.location.reload()}>
-            Reload
-          </Link>: null
+          (
+            <>
+              <Link 
+                ml={5} 
+                onClick={() => window.location.reload()}
+              >
+                Reload
+              </Link>
+              <Link 
+                ml={5} 
+                onClick={() => history.push('/')}
+              >
+               Home
+              </Link>
+            </>
+          ): null
         }
       </Box>
     ): null
