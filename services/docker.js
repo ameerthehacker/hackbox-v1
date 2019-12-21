@@ -8,17 +8,28 @@ class DockerClient {
   }
 
   createApp(app) {
-    const port = `${app.port}/tcp`;
-    const containerVolumeMountPoint = '/home/coder/project';
+    const portBindings  = {};
+    const volumeBindings = [];
+    const volumeMounts = {};
+
+    app.ports.forEach(port => {
+      portBindings[`${port.port}/tcp`] = [{
+        HostPort: port.port
+      }]
+    });
+    app.volumes.forEach(volume => {
+      volumeBindings.push(`${os.homedir()}:${volume.path}:rw`);
+      volumeMounts[volume.path] = {};
+    });
     
     return this.dockerClient.createContainer({
       Image: app.image,
       Volumes: {
-        [containerVolumeMountPoint]: {}
+        ...volumeMounts
       },
       HostConfig: {
-        PortBindings: { [port]: [{ "HostPort": "8080" }] },
-        Binds: [`${os.homedir()}:${containerVolumeMountPoint}:rw`]
+        PortBindings: { ...portBindings },
+        Binds: [...volumeBindings]
       },
       Labels: {
         createdBy: name,
