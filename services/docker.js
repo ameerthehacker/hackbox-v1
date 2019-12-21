@@ -1,5 +1,6 @@
 const Docker = require('dockerode');
 const { name } = require('../package.json');
+const os = require('os');
 
 class DockerClient {
   constructor() {
@@ -8,11 +9,16 @@ class DockerClient {
 
   createApp(app) {
     const port = `${app.port}/tcp`;
+    const containerVolumeMountPoint = '/home/coder/project';
     
     return this.dockerClient.createContainer({
       Image: app.image,
+      Volumes: {
+        [containerVolumeMountPoint]: {}
+      },
       HostConfig: {
-        PortBindings: { [port]: [{ "HostPort": "8080" }] }
+        PortBindings: { [port]: [{ "HostPort": "8080" }] },
+        Binds: [`${os.homedir()}:${containerVolumeMountPoint}:rw`]
       },
       Labels: {
         createdBy: name,
