@@ -1,4 +1,5 @@
 const Docker = require('dockerode');
+const { name } = require('../package.json');
 
 class DockerClient {
   constructor() {
@@ -6,11 +7,23 @@ class DockerClient {
   }
 
   createApp(app) {
-    this.dockerClient.run(app.image, ['--auth', 'none'], [], {
-      hostConfig: {
-        portBindings: { "8080/tcp": [{ "HostPort": "8080" }] }
-      }
+    const port = `${app.port}/tcp`;
+    
+    return this.dockerClient.createContainer({
+      Image: app.image,
+      HostConfig: {
+        PortBindings: { [port]: [{ "HostPort": "8080" }] }
+      },
+      Labels: {
+        createdBy: name,
+        name: app.name
+      },
+      Cmd: ['--auth', 'none'] 
     });
+  }
+
+  startApp(container) {
+    return container.start();
   }
 }
 

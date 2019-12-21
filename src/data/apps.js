@@ -4,7 +4,8 @@ const APPS = [
   {
     name: 'Visual Studio Code',
     image: 'codercom/code-server:v2',
-    icon: vscode
+    icon: vscode,
+    port: '8080'
   }
 ];
 

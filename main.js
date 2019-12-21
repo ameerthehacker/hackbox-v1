@@ -1,4 +1,4 @@
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow, globalShortcut } = require('electron');
 
 let win;
 
@@ -35,7 +35,13 @@ function createWindow() {
     }, 3000);
 
     if (process.env.DEBUG) {
-      win.webContents.openDevTools();
+      const registered = globalShortcut.register('CommandOrControl+I', () => {
+        win.webContents.openDevTools();
+      });
+
+      if(!registered) {
+        console.log('could not register the devtools key binding');
+      }
     }
   } else {
     win.loadFile('index.html');
