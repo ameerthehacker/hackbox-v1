@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import CreateNewComponent from './components/create-new';
-import { Flex, Spinner, Box, Text } from '@chakra-ui/core';
+import { Flex, Spinner, Box } from '@chakra-ui/core';
 import AppStatusCardComponent from '../../components/app-status-card';
 import APPS from '../../data/apps';
 const docker = window.require('./services/docker');
@@ -29,7 +29,7 @@ function Home() {
           });
     
     setApps(apps);
-  }, []);
+  }, [apps]);
 
   return (
     isLoading?

@@ -14,7 +14,7 @@ function AppStatusCardComponent({ app }) {
           .then(container => {
             setContainer(container);
           })
-  }, [containerId]);
+  }, []);
 
   useEffect(() => {
     updateContainerInfo(containerId);
