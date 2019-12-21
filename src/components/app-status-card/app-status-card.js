@@ -69,6 +69,7 @@ function AppStatusCardComponent({ app }) {
                 docker.startApp(containerId)
                       .then(() => {
                         updateContainerInfo(containerId);
+                        docker.openPortsInBrowser(container, app.ports);
                         setIsLoading(false);
                       })
                       .catch(err => {

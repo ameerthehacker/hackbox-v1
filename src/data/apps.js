@@ -9,6 +9,11 @@ const APPS = [
       name: 'Code server port',
       description: 'Port on which vscode is served',
       port: '8080',
+      openInBrowser: true,
+      health: {
+        interval: 2000,
+        path: '/'
+      }
     }],
     volumes: [{
       name: 'Project Path',

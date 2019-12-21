@@ -24,6 +24,7 @@ function AppCard({ app }) {
                            duration: 2000,
                            isClosable: true
                          })
+                         
                        })
                        .catch(err => {
                           toast({
