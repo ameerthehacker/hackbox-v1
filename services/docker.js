@@ -126,6 +126,12 @@ class DockerClient {
     return container.start();
   }
 
+  deleteApp(containerId) {
+    const container = this.dockerClient.getContainer(containerId);
+
+    return container.remove();
+  }
+
   stopApp(containerId) {
     const container = this.getContainer(containerId);
 
