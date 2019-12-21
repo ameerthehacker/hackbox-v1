@@ -39,20 +39,17 @@ function Home() {
     : (
       apps.length > 0?
       (
-        <>
-          <Text textAlign="center" fontSize="2xl">Apps</Text>
-          <Flex mt={1} wrap="wrap">
-            {
-              apps.map((app, index) => {
-                return (
-                  <Box key={index} p={1}>
-                    <AppStatusCardComponent app={app} />
-                  </Box>
-                )
-              })
-            }
-          </Flex>
-        </>
+        <Flex mt={1} wrap="wrap">
+          {
+            apps.map((app, index) => {
+              return (
+                <Box key={index} p={1}>
+                  <AppStatusCardComponent app={app} />
+                </Box>
+              )
+            })
+          }
+        </Flex>
       )
       : <CreateNewComponent />
     )    

@@ -1,22 +1,29 @@
 import React from 'react';
-import { HashRouter, Switch, Route } from 'react-router-dom';
 import Home from '../home';
 import NewApp from '../new-app';
-import { Box } from '@chakra-ui/core';
-import BackLink from '../../components/back-link';
+import { Tabs, TabList, TabPanels, TabPanel, Tab } from '@chakra-ui/core';
 
 function App() {
   return (
     <>
-      <Box p={10} pt={5}>
-        <HashRouter>
-          <BackLink />
-          <Switch>
-            <Route path="/" component={Home}  exact />
-            <Route path="/new" component={NewApp} exact />
-          </Switch>
-        </HashRouter>
-      </Box>
+      <Tabs variant="soft-rounded" mt={5} variantColor="pink">
+        <TabList p={5}>
+          <Tab>
+            My Apps
+          </Tab>
+          <Tab>
+            Available Apps
+          </Tab>
+        </TabList>
+        <TabPanels p={5} pt={0}>
+          <TabPanel>
+            <Home />
+          </TabPanel>
+          <TabPanel>
+            <NewApp />
+          </TabPanel>
+        </TabPanels>
+      </Tabs>
     </>
   );
 }
