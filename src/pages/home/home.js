@@ -17,7 +17,7 @@ function Home() {
 
               return {
                 ...app,
-                container
+                containerId: container.Id
               }
             })
 
