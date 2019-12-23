@@ -1,13 +1,23 @@
-import { ADD_APP } from '../action-types';
+import { ADD_APP, SET_IS_APP_LOADING } from '../action-types/app';
 
 let nextAppId = 0;
 
-export const addApp = (content) => {
+export const addApp = (app) => {
   return {
     type: ADD_APP,
     payload: {
       id: nextAppId++,
-      content
+      app
+    }
+  }
+};
+
+export const setIsAppLoading = (isAppLoading) => {
+  return {
+    type: SET_IS_APP_LOADING,
+    payload: {
+      err: false,
+      isAppLoading
     }
   }
 };

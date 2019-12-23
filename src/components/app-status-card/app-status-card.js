@@ -3,18 +3,12 @@ import { Flex, Image, Text, useToast } from '@chakra-ui/core';
 import AppActionComponent from './components/app-action';
 // This is to avoid webpack bundling native node modules
 const docker = window.require('./services/docker');
-
 function AppStatusCardComponent({ app, onAppDeleteClick }) {
   const containerId = app.containerId;
   const [container, setContainer] = useState(null);
   
   const updateContainerInfo = useCallback((containerId) => {
-    docker
-      .getContainer(containerId)
-      .inspect()
-      .then((container) => {
-        setContainer(container);
-      });
+   
   }, []);
 
   useEffect(() => {

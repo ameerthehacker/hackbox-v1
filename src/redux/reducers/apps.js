@@ -1,4 +1,4 @@
-import { ADD_APP } from '../action-types';
+import { ADD_APP } from '../action-types/app';
 
 const initialState = {
   allAppIds: [],
@@ -8,14 +8,17 @@ const initialState = {
 export default function(state = initialState, action) {
   switch(action.type) {
     case ADD_APP: {
-      const { id, content } = action.payload;
+      const { id, app } = action.payload;
       return {
         ...state,
         allAppIds: [...state.allAppIds, id],
         byAppIds: {
           ...state.byAppIds,
           [id]: {
-            content
+            content: {
+              ...app,
+              containerId: null
+            }
           }
         }
       };

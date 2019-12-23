@@ -10,8 +10,7 @@ function AppCard({ app, addApp }) {
   const [isAdding, setIsAdding] = useState(false);
   const onAddClick = () => {
     setIsAdding(true);
-
-    addApp({ data: 'dd' });
+    addApp(app);
 
     docker.createApp(app)
     .then((container) => {

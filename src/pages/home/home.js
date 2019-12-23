@@ -2,34 +2,16 @@ import React, { useState, useEffect } from 'react';
 import CreateNewComponent from './components/create-new';
 import { Flex, Spinner, Box, useToast } from '@chakra-ui/core';
 import AppStatusCardComponent from '../../components/app-status-card';
-import APPS from '../../data/apps';
 import { connect } from 'react-redux';
+import { getAllApps } from '../../redux/selectors/app';
 
-const docker = window.require('./services/docker');
-
-function Home({ myApps }) {
-  const [apps, setApps] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+function Home({ apps }) {
+  console.log(apps);
+  const [isLoading, setIsLoading] = useState(false);
   const toast = useToast();
 
   useEffect(() => {
-    docker.listApps()
-          .then(containers => {
-            const hackboxApps = containers.map(container => {
-              const app = APPS.find(e => e.image === container.Image);
-
-              return {
-                ...app,
-                containerId: container.Id
-              }
-            })
-
-            setApps(hackboxApps);
-            setIsLoading(false);
-          })
-          .catch(() => {
-            setIsLoading(false);
-          });    
+    
   }, []);
 
   return (
@@ -42,34 +24,11 @@ function Home({ myApps }) {
       (
         <Flex mt={1} wrap="wrap">
           {
-            apps.map((app, index) => {
+            apps.map((app) => {
+              console.log(app);
               return (
-                <Box key={index} p={1}>
+                <Box key={app.appId} p={1}>
                   <AppStatusCardComponent 
-                    onAppDeleteClick={(containerId) => {
-                      docker.deleteApp(containerId)
-                            .then(() => {
-                              const newApps = apps.filter(app => app.containerId !== containerId);
-                              setApps(newApps);
-
-                              toast({
-                                title: 'Deleted!',
-                                description: `The app was deleted`,
-                                status: 'success',
-                                duration: 3000,
-                                isClosable: true
-                              });
-                            })
-                            .catch(err => {
-                              toast({
-                                title: 'Failed to delete!',
-                                description: `${err}`,
-                                status: 'error',
-                                duration: 3000,
-                                isClosable: true
-                              });
-                            });
-                    }} 
                     app={app} 
                   />
                 </Box>
@@ -84,10 +43,8 @@ function Home({ myApps }) {
 }
 
 const mapStateToProps = (state) => {
-  const { byAppIds } = state.apps;
-
   return {
-    myApps: byAppIds
+    apps: getAllApps(state.apps)
   }
 }
 
