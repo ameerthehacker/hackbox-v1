@@ -3,9 +3,11 @@ import CreateNewComponent from './components/create-new';
 import { Flex, Spinner, Box, useToast } from '@chakra-ui/core';
 import AppStatusCardComponent from '../../components/app-status-card';
 import APPS from '../../data/apps';
+import { connect } from 'react-redux';
+
 const docker = window.require('./services/docker');
 
-function Home() {
+function Home({ myApps }) {
   const [apps, setApps] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const toast = useToast();
@@ -81,4 +83,12 @@ function Home() {
   );
 }
 
-export default Home;
+const mapStateToProps = (state) => {
+  const { byAppIds } = state.apps;
+
+  return {
+    myApps: byAppIds
+  }
+}
+
+export default connect(mapStateToProps)(Home);

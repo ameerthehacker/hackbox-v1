@@ -1,13 +1,17 @@
 import React, { useState } from 'react';
 import { Flex, Image, Text, Button, useToast, Link } from '@chakra-ui/core';
+import { addApp } from '../../redux/actions/app';
+import { connect } from 'react-redux';
 // This is to avoid webpack bundling native node modules
 const docker = window.require('./services/docker');
 
-function AppCard({ app }) {
+function AppCard({ app, addApp }) {
   const toast = useToast();
   const [isAdding, setIsAdding] = useState(false);
   const onAddClick = () => {
     setIsAdding(true);
+
+    addApp({ data: 'dd' });
 
     docker.createApp(app)
     .then((container) => {
@@ -77,4 +81,6 @@ function AppCard({ app }) {
   );
 }
 
-export default AppCard;
+const mapDispatchToProps = { addApp };
+
+export default connect(null, mapDispatchToProps)(AppCard);
