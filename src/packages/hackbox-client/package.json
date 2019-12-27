@@ -1,0 +1,31 @@
+{
+  "name": "hackbox-client",
+  "description": "react based client for hacbox",
+  "version": "0.0.1",
+  "scripts": {
+    "start": "react-scripts start",
+    "eject": "react-scripts eject",
+    "build": "react-scripts build"
+  },
+  "repository": "https://github.com/ameerthehacker/hackbox.git",
+  "author": "ameerthehacker",
+  "license": "apache",
+  "private": true,
+  "dependencies": {
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-scripts": "3.3.0"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

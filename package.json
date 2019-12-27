@@ -1,0 +1,26 @@
+{
+  "name": "hackbox",
+  "version": "0.0.1",
+  "description": "A fully open-sourced web based IDE",
+  "scripts": {
+    "start-client": "lerna run --scope hackbox-client start",
+    "build-client": "lerna run --scope hackbox-client build",
+    "prettify": "prettier --write",
+    "lint": "eslint . --fix",
+    "lint:staged": "eslint --fix"
+  },
+  "repository": "https://github.com/ameerthehacker/hackbox.git",
+  "author": "ameerthehacker",
+  "license": "apache",
+  "private": true,
+  "dependencies": {
+    "lerna": "^3.19.0"
+  },
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-plugin-react": "^7.17.0",
+    "husky": "^3.1.0",
+    "lint-staged": "^9.5.0",
+    "prettier": "^1.19.1"
+  }
+}
