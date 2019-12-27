@@ -5,6 +5,7 @@
   "scripts": {
     "start-client": "lerna run --scope hackbox-client start",
     "build-client": "lerna run --scope hackbox-client build",
+    "start-sandbox": "lerna run --scope sandbox start",
     "prettify": "prettier --write",
     "lint": "eslint . --fix",
     "lint:staged": "eslint --fix"
