@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "description": "browser based sandbox for running web projects",
   "scripts": {
-    "start": "parcel index.html --port 3001"
+    "start": "parcel index.html --port 3001",
+    "build": "parcel build index.html"
   },
   "repository": "https://github.com/ameerthehacker/hackbox.git",
   "author": "ameerthehacker",
