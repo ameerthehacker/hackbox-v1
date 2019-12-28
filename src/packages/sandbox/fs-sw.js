@@ -1,3 +1,5 @@
+import { SYNC_FILES, FILES_SYNCED } from './src/events';
+
 const FS_PREFIX = '/fs/';
 let files = {};
 
@@ -31,9 +33,9 @@ self.addEventListener('fetch', (evt) => {
 self.addEventListener('message', (evt) => {
   let { type, content } = evt.data;
 
-  if (type === 'files') {
+  if (type === SYNC_FILES) {
     files = content;
 
-    evt.ports[0].postMessage({ type: 'files-ready' });
+    evt.ports[0].postMessage({ type: FILES_SYNCED });
   }
 });

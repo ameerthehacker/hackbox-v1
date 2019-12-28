@@ -1,0 +1,6 @@
+const EVENTS = {
+  SYNC_FILES: 'SYNC_FILES',
+  FILES_SYNCED: 'FILES_SYNCED'
+};
+
+export default EVENTS;

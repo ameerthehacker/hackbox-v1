@@ -1,4 +1,5 @@
 import * as fsSW from './fs-sw';
+import { SYNC_FILES, FILES_SYNCED } from './events';
 
 /* eslint-disable no-undef */
 System.config({
@@ -29,14 +30,14 @@ fsSW.register().then(() => {
     channel.port1.onmessage = (evt) => {
       let { type } = evt.data;
 
-      if (type === 'files-ready') {
+      if (type === FILES_SYNCED) {
         System.import('main.js');
       }
     };
 
     navigator.serviceWorker.controller.postMessage(
       {
-        type: 'files',
+        type: SYNC_FILES,
         content: files
       },
       [channel.port2]
