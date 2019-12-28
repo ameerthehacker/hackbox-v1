@@ -33,5 +33,7 @@ self.addEventListener('message', (evt) => {
 
   if (type === 'files') {
     files = content;
+
+    evt.ports[0].postMessage({ type: 'files-ready' });
   }
 });
