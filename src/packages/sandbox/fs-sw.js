@@ -1,7 +1,7 @@
 import { SYNC_FILES, FILES_SYNCED } from './src/events';
+import { vol } from 'memfs';
 
 const FS_PREFIX = '/fs/';
-let files = {};
 
 self.addEventListener('install', () => self.skipWaiting());
 
@@ -12,7 +12,7 @@ self.addEventListener('fetch', (evt) => {
   if (fsPrefixIndex !== -1) {
     let fsPath = requestUrl.substring(fsPrefixIndex + FS_PREFIX.length);
 
-    if (files[fsPath] === undefined) {
+    if (!vol.existsSync(fsPath)) {
       evt.respondWith(
         new Response(null, {
           status: 404
@@ -23,7 +23,7 @@ self.addEventListener('fetch', (evt) => {
     }
 
     evt.respondWith(
-      new Response(files[fsPath], {
+      new Response(vol.readFileSync(fsPath), {
         ContentType: 'application/javascript'
       })
     );
@@ -34,7 +34,7 @@ self.addEventListener('message', (evt) => {
   let { type, content } = evt.data;
 
   if (type === SYNC_FILES) {
-    files = content;
+    vol.fromJSON(content);
 
     evt.ports[0].postMessage({ type: FILES_SYNCED });
   }

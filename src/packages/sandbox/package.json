@@ -13,5 +13,7 @@
   "devDependencies": {
     "parcel": "^1.12.4"
   },
-  "dependencies": {}
+  "dependencies": {
+    "memfs": "^3.0.3"
+  }
 }
