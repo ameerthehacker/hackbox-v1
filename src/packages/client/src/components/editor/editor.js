@@ -1,12 +1,34 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import MonacoEditor from '@monaco-editor/react';
 import FileExplorer from './components/file-explorer';
 import { Grid } from '@material-ui/core';
 import PropTypes from 'prop-types';
 
-function Editor({ vol, monacoOptions = {} }) {
+function Editor({
+  vol,
+  monacoOptions = {},
+  autoSave = true,
+  autoSaveInterval = 1000
+}) {
   const editorRef = useRef();
   const selectedFilePathRef = useRef(null);
+
+  useEffect(() => {
+    if (autoSave) {
+      let timer = setInterval(saveSelectedFile, autoSaveInterval);
+
+      return () => clearInterval(timer);
+    }
+  }, []);
+
+  function saveSelectedFile() {
+    if (selectedFilePathRef.current) {
+      vol.writeFileSync(
+        selectedFilePathRef.current,
+        editorRef.current.getValue()
+      );
+    }
+  }
 
   function handleEditorDidMount(_, editor) {
     editorRef.current = editor;
@@ -18,12 +40,7 @@ function Editor({ vol, monacoOptions = {} }) {
     if ((evt.ctrlKey || evt.metaKey) && charCode === 's') {
       evt.preventDefault();
 
-      if (selectedFilePathRef.current) {
-        vol.writeFileSync(
-          selectedFilePathRef.current,
-          editorRef.current.getValue()
-        );
-      }
+      saveSelectedFile();
     }
   }
 
@@ -55,7 +72,9 @@ function Editor({ vol, monacoOptions = {} }) {
 
 Editor.propTypes = {
   vol: PropTypes.object.isRequired,
-  monacoOptions: PropTypes.object
+  monacoOptions: PropTypes.object,
+  autoSave: PropTypes.bool,
+  autoSaveInterval: PropTypes.number
 };
 
 export default Editor;
