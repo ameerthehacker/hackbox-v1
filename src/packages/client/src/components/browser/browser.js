@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { Box, makeStyles, IconButton } from '@material-ui/core';
 import RefreshIcon from '@material-ui/icons/Refresh';
-import PropTypes from 'prop-types';
+import fs from '../../services/fs';
 
 const useStyles = makeStyles({
   container: {
@@ -18,9 +18,23 @@ const useStyles = makeStyles({
   }
 });
 
-function Browser({ vol }) {
+function Browser() {
   let classes = useStyles();
   const iframeRef = useRef(null);
+  const vol = fs.getVol();
+
+  function reload() {
+    iframeRef.current.contentWindow.postMessage(
+      {
+        type: 'RELOAD'
+      },
+      iframeRef.current.src
+    );
+  }
+
+  fs.addChangeListener(() => {
+    reload();
+  });
 
   window.addEventListener('message', (evt) => {
     let { type } = evt.data;
@@ -31,24 +45,15 @@ function Browser({ vol }) {
           type: 'SYNC_FILES',
           files: vol.toJSON()
         },
-        'http://localhost:3001'
+        iframeRef.current.src
       );
     }
   });
 
-  function handleRefreshBtnClick() {
-    iframeRef.current.contentWindow.postMessage(
-      {
-        type: 'RELOAD'
-      },
-      iframeRef.current.src
-    );
-  }
-
   return (
     <Box className={classes.container}>
       <Box className={classes.navBar} height={50}>
-        <IconButton onClick={handleRefreshBtnClick} color="default">
+        <IconButton onClick={reload} color="default">
           <RefreshIcon color="secondary" />
         </IconButton>
       </Box>
@@ -63,9 +68,5 @@ function Browser({ vol }) {
     </Box>
   );
 }
-
-Browser.propTypes = {
-  vol: PropTypes.object.isRequired
-};
 
 export default Browser;

@@ -1,8 +1,10 @@
 import React from 'react';
 import TreeItem from '@material-ui/lab/TreeItem';
+import fs from '../../../../../../services/fs';
 import PropTypes from 'prop-types';
 
-function FolderTree({ vol, onFileSelected, parentFolder = '.' }) {
+function FolderTree({ onFileSelected, parentFolder = '.' }) {
+  const vol = fs.getVol();
   let folderContents = vol.readdirSync(parentFolder);
   let folders = folderContents.filter(
     (content) => !vol.lstatSync(`${parentFolder}/${content}`).isFile()
@@ -47,7 +49,6 @@ function FolderTree({ vol, onFileSelected, parentFolder = '.' }) {
 }
 
 FolderTree.propTypes = {
-  vol: PropTypes.object.isRequired,
   parentFolder: PropTypes.string,
   onFileSelected: PropTypes.func.isRequired
 };

@@ -2,16 +2,17 @@ import React, { useRef, useEffect } from 'react';
 import MonacoEditor from '@monaco-editor/react';
 import FileExplorer from './components/file-explorer';
 import { Grid } from '@material-ui/core';
+import fs from '../../services/fs';
 import PropTypes from 'prop-types';
 
 function Editor({
-  vol,
   monacoOptions = {},
   autoSave = true,
   autoSaveInterval = 1000
 }) {
   const editorRef = useRef();
   const selectedFilePathRef = useRef(null);
+  const vol = fs.getVol();
 
   useEffect(() => {
     if (autoSave) {
@@ -23,7 +24,7 @@ function Editor({
 
   function saveSelectedFile() {
     if (selectedFilePathRef.current) {
-      vol.writeFileSync(
+      fs.createOrUpdateFileSync(
         selectedFilePathRef.current,
         editorRef.current.getValue()
       );
@@ -48,7 +49,6 @@ function Editor({
     <Grid container onKeyDown={handleKeyDown}>
       <Grid item xs={2}>
         <FileExplorer
-          vol={vol}
           onFileSelected={(filePath) => {
             let fileContent = vol.readFileSync(filePath, 'utf-8');
             selectedFilePathRef.current = filePath;
@@ -71,7 +71,6 @@ function Editor({
 }
 
 Editor.propTypes = {
-  vol: PropTypes.object.isRequired,
   monacoOptions: PropTypes.object,
   autoSave: PropTypes.bool,
   autoSaveInterval: PropTypes.number
