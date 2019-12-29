@@ -14,7 +14,7 @@ const useStyles = makeStyles({
   }
 });
 
-function FileExplorer({ vol }) {
+function FileExplorer({ vol, onFileSelected }) {
   let classes = useStyles();
 
   return (
@@ -23,14 +23,15 @@ function FileExplorer({ vol }) {
         defaultCollapseIcon={<FolderOpenIcon />}
         defaultExpandIcon={<FolderIcon />}
       >
-        <FolderTree vol={vol} />
+        <FolderTree onFileSelected={onFileSelected} vol={vol} />
       </TreeView>
     </Box>
   );
 }
 
 FileExplorer.propTypes = {
-  vol: PropTypes.object.isRequired
+  vol: PropTypes.object.isRequired,
+  onFileSelected: PropTypes.func.isRequired
 };
 
 export default FileExplorer;

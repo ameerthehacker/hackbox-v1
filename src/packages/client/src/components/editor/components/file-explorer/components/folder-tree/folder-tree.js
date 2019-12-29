@@ -2,7 +2,7 @@ import React from 'react';
 import TreeItem from '@material-ui/lab/TreeItem';
 import PropTypes from 'prop-types';
 
-function FolderTree({ vol, parentFolder = '.' }) {
+function FolderTree({ vol, onFileSelected, parentFolder = '.' }) {
   let folderContents = vol.readdirSync(parentFolder);
   let folders = folderContents.filter(
     (content) => !vol.lstatSync(`${parentFolder}/${content}`).isFile()
@@ -16,7 +16,11 @@ function FolderTree({ vol, parentFolder = '.' }) {
 
     return (
       <TreeItem key={folderPath} nodeId={folderPath} label={folder}>
-        <FolderTree vol={vol} parentFolder={folderPath} />
+        <FolderTree
+          vol={vol}
+          onFileSelected={onFileSelected}
+          parentFolder={folderPath}
+        />
       </TreeItem>
     );
   });
@@ -24,7 +28,14 @@ function FolderTree({ vol, parentFolder = '.' }) {
   let fileTree = files.map((file) => {
     let filePath = `${parentFolder}/${file}`;
 
-    return <TreeItem key={filePath} nodeId={filePath} label={file} />;
+    return (
+      <TreeItem
+        onClick={() => onFileSelected(filePath)}
+        key={filePath}
+        nodeId={filePath}
+        label={file}
+      />
+    );
   });
 
   return (
@@ -37,7 +48,8 @@ function FolderTree({ vol, parentFolder = '.' }) {
 
 FolderTree.propTypes = {
   vol: PropTypes.object.isRequired,
-  parentFolder: PropTypes.string
+  parentFolder: PropTypes.string,
+  onFileSelected: PropTypes.func.isRequired
 };
 
 export default FolderTree;
