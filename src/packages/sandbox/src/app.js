@@ -28,6 +28,14 @@ vol.writeFileSync('hello.js', hello);
 // register the file system service worker
 fsSW.register().then(() => {
   if (navigator.serviceWorker.controller) {
+    // tell parent that we are ready
+    window.parent.postMessage(
+      {
+        type: 'READY'
+      },
+      'http://localhost:3000'
+    );
+
     let channel = new MessageChannel();
 
     channel.port1.onmessage = (evt) => {
@@ -38,13 +46,28 @@ fsSW.register().then(() => {
       }
     };
 
-    navigator.serviceWorker.controller.postMessage(
-      {
-        type: SYNC_FILES,
-        content: vol.toJSON()
-      },
-      [channel.port2]
-    );
+    window.addEventListener('message', (evt) => {
+      let { type } = evt.data;
+
+      switch (type) {
+        case 'RELOAD': {
+          location.reload();
+          break;
+        }
+        case 'SYNC_FILES': {
+          let { files } = evt.data;
+
+          navigator.serviceWorker.controller.postMessage(
+            {
+              type: SYNC_FILES,
+              content: files
+            },
+            [channel.port2]
+          );
+          break;
+        }
+      }
+    });
   } else {
     location.reload();
   }
