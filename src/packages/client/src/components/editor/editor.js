@@ -2,12 +2,13 @@ import React from 'react';
 import MonacoEditor from '@monaco-editor/react';
 import FileExplorer from './components/file-explorer';
 import { Grid } from '@material-ui/core';
+import PropTypes from 'prop-types';
 
-function Editor() {
+function Editor({ vol }) {
   return (
     <Grid container>
       <Grid item xs={2}>
-        <FileExplorer />
+        <FileExplorer vol={vol} />
       </Grid>
       <Grid item xs={10}>
         <MonacoEditor theme="vs-dark" height="100vh" language="javascript" />
@@ -15,5 +16,9 @@ function Editor() {
     </Grid>
   );
 }
+
+Editor.propTypes = {
+  vol: PropTypes.object.isRequired
+};
 
 export default Editor;
