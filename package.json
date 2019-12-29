@@ -3,8 +3,8 @@
   "version": "0.0.1",
   "description": "A fully open-sourced web based IDE",
   "scripts": {
-    "start-client": "lerna run --scope client start",
-    "build-client": "lerna run --scope client build",
+    "start-client": "lerna run --scope hackbox-client start",
+    "build-client": "lerna run --scope hackbox-client build",
     "start-sandbox": "lerna run --scope sandbox start",
     "build-sandbox": "lerna run --scope sandbox build",
     "prettify": "prettier --write",

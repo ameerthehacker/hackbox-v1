@@ -1,5 +1,6 @@
 import React from 'react';
+import Editor from '../../components/editor';
 
 export default function App() {
-  return <h1>Hello World from hackbox client</h1>;
+  return <Editor />;
 }
