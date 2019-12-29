@@ -20,5 +20,5 @@ vol.writeFileSync('modules/sub/hello.js', hello);
 vol.writeFileSync('modules/hello.js', hello);
 
 export default function App() {
-  return <Editor vol={vol} />;
+  return <Editor vol={vol} monacoOptions={{ fontSize: '20rem' }} />;
 }

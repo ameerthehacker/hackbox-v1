@@ -22,6 +22,9 @@
     "react-dom": "^16.12.0",
     "react-scripts": "3.3.0"
   },
+  "resolutions": {
+    "jss": "10.0.0"
+  },
   "browserslist": {
     "production": [
       ">0.2%",
