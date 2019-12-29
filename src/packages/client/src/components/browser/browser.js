@@ -41,7 +41,7 @@ function Browser({ vol }) {
       {
         type: 'RELOAD'
       },
-      'http://localhost:3001'
+      iframeRef.current.src
     );
   }
 
