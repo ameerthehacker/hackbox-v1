@@ -9,7 +9,7 @@
   dependencies:
     "@babel/highlight" "^7.0.0"
 
-"@babel/core@^7.4.4":
+"@babel/core@^7.4.4", "@babel/core@^7.7.7":
   version "7.7.7"
   resolved "https://registry.yarnpkg.com/@babel/core/-/core-7.7.7.tgz#ee155d2e12300bcc0cff6a8ad46f2af5063803e9"
   integrity sha512-jlSjuj/7z138NLZALxVgrx13AOtqip42ATZP7+kYl53GvDV6+4dCek1mVUo8z8c8Xnw/mx2q3d9HWh3griuesQ==
@@ -303,6 +303,13 @@
   dependencies:
     "@babel/helper-plugin-utils" "^7.0.0"
 
+"@babel/plugin-syntax-import-meta@^7.7.4":
+  version "7.7.4"
+  resolved "https://registry.yarnpkg.com/@babel/plugin-syntax-import-meta/-/plugin-syntax-import-meta-7.7.4.tgz#3e9e4630780df5885b801f53c5f68d75e99e5261"
+  integrity sha512-hl6aKgm2IbVB+X9Z2xcKvGObOOS//vbohHPpNvd8iaKA3XQi3Sz/3oOyb3GLes6hY871mkbZQYK7lxriVECRAQ==
+  dependencies:
+    "@babel/helper-plugin-utils" "^7.0.0"
+
 "@babel/plugin-syntax-json-strings@^7.7.4":
   version "7.7.4"
   resolved "https://registry.yarnpkg.com/@babel/plugin-syntax-json-strings/-/plugin-syntax-json-strings-7.7.4.tgz#86e63f7d2e22f9e27129ac4e83ea989a382e86cc"
@@ -531,7 +538,7 @@
   dependencies:
     "@babel/helper-plugin-utils" "^7.0.0"
 
-"@babel/plugin-transform-react-jsx@^7.0.0":
+"@babel/plugin-transform-react-jsx@^7.0.0", "@babel/plugin-transform-react-jsx@^7.7.7":
   version "7.7.7"
   resolved "https://registry.yarnpkg.com/@babel/plugin-transform-react-jsx/-/plugin-transform-react-jsx-7.7.7.tgz#5cbaa7445b4a09f774029f3cc7bb448ff3122a5d"
   integrity sha512-SlPjWPbva2+7/ZJbGcoqjl4LsQaLpKEzxW9hcxU7675s24JmdotJOSJ4cgAbV82W3FcZpHIGmRZIlUL8ayMvjw==
@@ -4694,11 +4701,6 @@ systemjs-css-extra@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/systemjs-css-extra/-/systemjs-css-extra-1.0.2.tgz#741ea15ce6febaa0745deafe34318506fdea19d5"
   integrity sha512-crSqrulcJAubWxDzas/Tw9aGK8Pi0lBMhwzSE2U4LZaHlmuX0W/qgzHLBVnO+krkbIns3ayUhQVZZUdE2+SGaA==
-
-systemjs-transform-babel@^0.1.2:
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/systemjs-transform-babel/-/systemjs-transform-babel-0.1.2.tgz#c0eaa549157f79ae6d3d2cba179f7d4a437fd346"
-  integrity sha512-wl5QOQZFdj0I1lqQu9lWIjcX6WIFzBu7oyj9q8Ug3Qa26rbBb6y9kuMKqjYKu9PoOnyO+d4+Tly8sRsivVWPXQ==
 
 systemjs@^6.1.7:
   version "6.1.7"

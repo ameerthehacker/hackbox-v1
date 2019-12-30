@@ -1,9 +1,11 @@
 import * as fsSW from './fs-sw';
 import { SYNC_FILES, FILES_SYNCED } from './events';
 import 'systemjs/dist/system';
+import 'systemjs/dist/extras/named-exports';
+import 'systemjs/dist/extras/named-register';
 import 'systemjs/dist/extras/transform';
-import 'systemjs-transform-babel';
 import 'systemjs-css-extra/dist/css';
+import './babel-transform';
 
 // register the file system service worker
 fsSW.register().then(() => {

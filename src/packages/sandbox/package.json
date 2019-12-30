@@ -14,9 +14,13 @@
     "parcel": "^1.12.4"
   },
   "dependencies": {
+    "@babel/core": "^7.7.7",
+    "@babel/plugin-syntax-dynamic-import": "^7.7.4",
+    "@babel/plugin-syntax-import-meta": "^7.7.4",
+    "@babel/plugin-transform-modules-systemjs": "^7.7.4",
+    "@babel/plugin-transform-react-jsx": "^7.7.7",
     "memfs": "^3.0.3",
     "systemjs": "^6.1.7",
-    "systemjs-css-extra": "^1.0.2",
-    "systemjs-transform-babel": "^0.1.2"
+    "systemjs-css-extra": "^1.0.2"
   }
 }
