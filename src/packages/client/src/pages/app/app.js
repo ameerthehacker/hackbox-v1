@@ -21,7 +21,7 @@ export default function App() {
   return (
     <Grid container>
       <Grid item xs={8}>
-        <Editor monacoOptions={{ fontSize: '20rem' }} />
+        <Editor autoSave={false} monacoOptions={{ fontSize: '20rem' }} />
       </Grid>
       <Grid item xs={4}>
         <Browser />
