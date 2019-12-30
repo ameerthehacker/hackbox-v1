@@ -4690,6 +4690,21 @@ symbol-tree@^3.2.2:
   resolved "https://registry.yarnpkg.com/symbol-tree/-/symbol-tree-3.2.4.tgz#430637d248ba77e078883951fb9aa0eed7c63fa2"
   integrity sha512-9QNk5KwDF+Bvz+PyObkmSYjI5ksVUYtjW7AU22r2NKcfLJcXp96hkDWU3+XndOsUb+AQ9QhfzfCT2O+CNWT5Tw==
 
+systemjs-css-extra@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/systemjs-css-extra/-/systemjs-css-extra-1.0.2.tgz#741ea15ce6febaa0745deafe34318506fdea19d5"
+  integrity sha512-crSqrulcJAubWxDzas/Tw9aGK8Pi0lBMhwzSE2U4LZaHlmuX0W/qgzHLBVnO+krkbIns3ayUhQVZZUdE2+SGaA==
+
+systemjs-transform-babel@^0.1.2:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/systemjs-transform-babel/-/systemjs-transform-babel-0.1.2.tgz#c0eaa549157f79ae6d3d2cba179f7d4a437fd346"
+  integrity sha512-wl5QOQZFdj0I1lqQu9lWIjcX6WIFzBu7oyj9q8Ug3Qa26rbBb6y9kuMKqjYKu9PoOnyO+d4+Tly8sRsivVWPXQ==
+
+systemjs@^6.1.7:
+  version "6.1.7"
+  resolved "https://registry.yarnpkg.com/systemjs/-/systemjs-6.1.7.tgz#631474f8d0d33412be215ab39a294663a90157d9"
+  integrity sha512-v2tDs5HV7Ql8iZd7eBupzTOPIV6OUzNyJ1wNCAlQ7Et73yfQm4dbfQOSNLzcESLY2YEsLbn0K9WAnNsqwK7OFg==
+
 terser@^3.7.3:
   version "3.17.0"
   resolved "https://registry.yarnpkg.com/terser/-/terser-3.17.0.tgz#f88ffbeda0deb5637f9d24b0da66f4e15ab10cb2"

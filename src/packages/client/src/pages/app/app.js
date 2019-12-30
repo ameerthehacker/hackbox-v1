@@ -4,18 +4,29 @@ import Browser from '../../components/browser';
 import { Grid } from '@material-ui/core';
 import fs from '../../services/fs';
 
-const main = `import hello from './modules/hello';
+const main = `import hello from './modules/hello.js';
+import './modules/index.css';
 
-hello();
+hello('Ameer Jhan there');
 `;
-const hello = `export default function hello() {
-  console.log('hello world from sandbox');
+const hello = `export default function hello(name) {
+  const div = document.getElementById('output');
+
+  div.innerHTML = \`Hi \${name}\`;
 }`;
+
+const css = `
+h1 {
+  color: red;
+}
+`;
+
 const vol = fs.getVol();
 
 fs.createOrUpdateFileSync('main.js', main);
 vol.mkdirSync('modules');
 fs.createOrUpdateFileSync('modules/hello.js', hello);
+fs.createOrUpdateFileSync('modules/index.css', css);
 
 export default function App() {
   return (

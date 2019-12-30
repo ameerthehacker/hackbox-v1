@@ -22,9 +22,22 @@ self.addEventListener('fetch', (evt) => {
       return;
     }
 
+    let mimeType = null;
+    let fileName = fsPath.split('/').pop();
+    let extension = fileName.split('.').pop();
+
+    switch (extension) {
+      case 'js':
+        mimeType = 'application/javascript';
+        break;
+      case 'css':
+        mimeType = 'text/css';
+        break;
+    }
+
     evt.respondWith(
       new Response(vol.readFileSync(fsPath), {
-        ContentType: 'application/javascript'
+        ContentType: mimeType
       })
     );
   }

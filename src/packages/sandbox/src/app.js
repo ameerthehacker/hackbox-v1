@@ -1,29 +1,9 @@
 import * as fsSW from './fs-sw';
 import { SYNC_FILES, FILES_SYNCED } from './events';
-import { vol } from 'memfs';
-
-/* eslint-disable no-undef */
-System.config({
-  baseURL: '/fs',
-  defaultJSExtensions: true,
-  map: {
-    traceur: 'https://cdn.jsdelivr.net/npm/traceur@0.0.111/bin/traceur.js'
-  }
-});
-
-const main = `
-  import hello from './hello'
-
-  hello();
-`;
-const hello = `
-  export default function hello() {
-    console.log('hello world from sandbox');
-  }
-`;
-
-vol.writeFileSync('main.js', main);
-vol.writeFileSync('hello.js', hello);
+import 'systemjs/dist/system';
+import 'systemjs/dist/extras/transform';
+import 'systemjs-transform-babel';
+import 'systemjs-css-extra/dist/css';
 
 // register the file system service worker
 fsSW.register().then(() => {
@@ -42,7 +22,8 @@ fsSW.register().then(() => {
       let { type } = evt.data;
 
       if (type === FILES_SYNCED) {
-        System.import('main.js');
+        /* eslint-disable no-undef */
+        System.import('./fs/main.js');
       }
     };
 
@@ -72,5 +53,3 @@ fsSW.register().then(() => {
     location.reload();
   }
 });
-
-document.writeln('Hello world from sandbox!');
