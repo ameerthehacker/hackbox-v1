@@ -15,13 +15,12 @@
   "author": "ameerthehacker",
   "license": "apache",
   "private": true,
-  "dependencies": {
-    "lerna": "^3.19.0"
-  },
+  "dependencies": {},
   "devDependencies": {
     "eslint": "^6.8.0",
     "eslint-plugin-react": "^7.17.0",
     "husky": "^3.1.0",
+    "lerna": "^3.20.1",
     "lint-staged": "^9.5.0",
     "prettier": "^1.19.1"
   }
